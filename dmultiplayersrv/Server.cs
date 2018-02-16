@@ -2339,6 +2339,14 @@ namespace Darkly.GDTMP
                             case "SABOTAGE":
                             case "SABODATA":
                             case "SABOFAIL":
+                            case "SUEREQ":
+                            case "SUERES":
+                                sendothers = false;
+
+                                if (splitdata.Length > 2 && (!(splitdata[0] == "SUEREQ" && splitdata.Length < 4 && ConvertToLong(splitdata[4]) > Settings.maxmoney)))
+                                    Clients[GetIndex(ConvertToLong(splitdata[1]))].Context.Send(data);
+
+                                break;
                             case "TRADEREQ":
                             case "TRADERES":
                                 sendothers = false;
